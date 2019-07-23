@@ -6,21 +6,20 @@ class Centaur {
 		this.layingDown = false;
 		this.name = name;
 		this.standing = true;
+		this.rested = false;
 	}
 
 	shoot() {
 		this.count++;
-
 		this.cranky = this.count >= 3;
 			//return "Twang!!!";
-
-			return this.cranky || this.layingDown ? "NO!" : "Twang!!!"
+		return this.cranky || this.layingDown ? "NO!" : "Twang!!!"
 	}
 
 	run() {
 		this.count++;
 		this.cranky = this.count >= 3;
-		return this.layingDown || this.layingDown ? "NO!" : "Clop clop clop clop!!!"
+		return this.layingDown ? "NO!" : "Clop clop clop clop!!!"
 }
 
 	sleep() {
@@ -45,10 +44,11 @@ class Centaur {
 	}
 
 	drinkPotion() {
-		if (this.standing) {
+		if (this.standing && this.cranky == false) {
 			this.cranky = false;
+			this.rested = true;
 		}
-		if (this.cranky = false) {
+		if (this.rested) {
 			this.cranky = true;
 		}
 		return "Not while I\'m laying down!";
